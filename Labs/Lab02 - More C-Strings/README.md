@@ -25,7 +25,7 @@ sofa scheme neck chicken plagiarize . --> Shortest: sofa, Longest: plagiarize
 
 ## Бонуси
 
-Ще дефинираме <израз> по следния начин: <израз> := t|f|A(<израз>,<израз>)|O(<израз>,<израз>), където t означава true, f - false, A - логическо и, О - логическо или
+Ще дефинираме <израз> по следния начин: <израз> := t|f|A(<израз>,<израз>)|O(<израз>,<израз>), където t означава true, f - false, A - логическо и, О - логическо или. Примери за <израз> са: t; f; A(t,f); O(A(t,f),f); A(O(t,f),A(t,A(O(t,f),t)))
 
 ### Бонус 1
 
@@ -44,3 +44,5 @@ sofa scheme neck chicken plagiarize . --> Shortest: sofa, Longest: plagiarize
 А(О(f,t),A(t,f)) --> false
 
 А(О(f,t),A(t,t)) --> true 
+
+Краен срок: 19.03.2019 23:59

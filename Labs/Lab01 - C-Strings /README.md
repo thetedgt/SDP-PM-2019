@@ -133,3 +133,5 @@ words = {"photograph", "bulldozer", "flatness", "phantom", "hidden", "crush"}, s
 words = {"dealer", "evolution", "make", "vigor"} --> true
 
 words = {"location", "stick", "bottom", "native"} --> false
+
+Краен срок: 19.03.2019 23:59
