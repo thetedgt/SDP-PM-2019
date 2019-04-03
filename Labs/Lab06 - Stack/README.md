@@ -26,7 +26,13 @@ g(x,y) = (2x+3y)%10
 Примери:
 
 A -> A
+
 AB -> AB
+
 3(A) -> AAA
+
 3(AB2(B)) -> ABBBABBBABBB
+
 12(ZQ) -> ZQZQZQZQZQZQZQZQZQZQZQZQ
+
+Краен срок: 23:59 9.04.2019 
