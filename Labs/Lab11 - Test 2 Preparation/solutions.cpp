@@ -142,16 +142,186 @@ void sum(const list<list<int>> &l1, const list<list<int>> &l2) {
   }
 }
 
+// 5.2
+void merge(list<int>& l1, list<int>& l2)
+{
+  list<int> res; // с една връзка
+  l2.push_front(0);
+  auto it1 = l1.begin();
+  auto it2 = --l2.end();
+
+  while(it1 != l1.end() && it2 != l2.begin())
+  {
+    if(*it1 == *it2)
+    {
+      res.push_back(*it1);
+      it1++;
+      it2--;
+    }
+    else if(*it1 < *it2)
+    {
+      res.push_back(*it1);
+      it1++;
+    }
+    else 
+    {
+      res.push_back(*it2);
+      it2--;
+    }
+  }
+
+  while(it1 != l1.end())
+  {
+    res.push_back(*it1);
+    it1++;
+  }
+  while(it2 != l2.begin())
+  {
+    res.push_back(*it2);
+    it2--;
+  }
+
+  l2.pop_front();
+
+  for(auto it = res.begin(); it != res.end(); ++it)
+  {
+    cout << *it << " ";
+  }
+  cout << endl;
+}
+
+// 4.3
+bool equalK(list<list<int>> &matrix, int k) 
+{
+  auto it1 = matrix.begin();
+  int cnt = 1;
+  while (cnt < k) 
+  {
+    it1++;
+    cnt++;
+  }
+  auto itRow = it1->begin();
+
+  auto it2 = matrix.begin();
+  while(it2 != matrix.end()) 
+  {
+    auto itCol = it2->begin();
+    cnt = 1;
+    while(cnt < k) 
+    {
+      itCol++;
+      cnt++;
+    }
+    if(*itRow != *itCol) 
+    {
+      return false;
+    }
+    it2++;
+    itRow++;
+  }
+
+  return true;
+}
+
+// 3.3
+list<int> listQueueFilter(list<queue<int>> &l) 
+{
+  list<int> sumL;
+  auto it = l.begin();
+  while (it != l.end()) 
+  {
+    queue<int> &curQueue = *it;
+    int size = curQueue.size();
+    int sum = 0;
+    for(int i = 0; i < size; i++) 
+    {
+      int front = curQueue.front();
+      curQueue.pop();
+      if (front >= 0) 
+      {
+        curQueue.push(front);
+        sum += front;
+      }
+    }
+    ++it;
+    sumL.push_back(sum);
+    cout << sum << " ";
+  }
+  cout << endl;
+  return sumL;
+}
+
+// 1.3
+list<int> intersection(list<list<int>> l) {
+  auto it = l.begin();
+  list<int> res = *it;
+  it++;
+  while(it != l.end()) 
+  {
+
+    auto itRes = res.begin();
+
+    while(itRes != res.end()) {
+
+      auto itCur = it->begin();
+      bool find = false;
+
+      while(!find && itCur != it->end()) {
+         if(*itCur == *itRes) {
+           find = true;
+         }
+         itCur++;
+      }
+
+      if(!find ) {
+        itRes = res.erase(itRes);
+      } else  {
+        itRes++;
+      }
+    }
+
+    it++;
+  }
+
+  return res;
+}
+
 int main() {
-  list<int> l;
-  l.push_back(1);
-  l.push_back(3);
-  l.push_back(5);
-  l.push_back(7);
-  l.push_back(7);
-  l.push_back(5);
-  l.push_back(3);
-  l.push_back(1);
+  list<list<int>> matrix;
+  list<int> row1;
+  row1.push_back(1);
+  row1.push_back(3);
+  row1.push_back(5);
+  row1.push_back(7);
+  list<int> row2;
+  row2.push_back(2);
+  row2.push_back(4);
+  row2.push_back(5);
+  row2.push_back(7);
+  list<int> row3;
+  row3.push_back(9);
+  row3.push_back(3);
+  row3.push_back(1);
+  row3.push_back(7);
+  row3.push_back(5);
+  matrix.push_back(row1);
+  matrix.push_back(row2);
+  matrix.push_back(row3);
+  auto res = intersection(matrix);
+  for(auto it = res.begin(); it != res.end(); ++it)
+  {
+    cout << *it <<" ";
+  }
+  cout << endl;
+  // list<int> l, l2;
+  // l.push_back(1);
+  // l.push_back(3);
+  // l.push_back(5);
+  // l.push_back(7);
+  // l2.push_back(8);
+  // l2.push_back(5);
+  // l2.push_back(3);
+  // merge(l, l2);
   //cout << isSortedPalindrome(l);
   // queue<string> q;
   // q.push("alabala");
@@ -171,11 +341,11 @@ int main() {
   // studs.push_back({"go6o1", 1, 3});
   // studs.push_back({"go6o2", 1, 4});
   // studs1(studs);
-  list<list<int>> first, second;
-  first.push_back({4, 5, 5});
-  first.push_back({1, 0, 2});
-  second.push_back({6, 1, 3});
-  second.push_back({1,3,5});
-  sum(first, second);
+  // list<list<int>> first, second;
+  // first.push_back({4, 5, 5});
+  // first.push_back({1, 0, 2});
+  // second.push_back({6, 1, 3});
+  // second.push_back({1,3,5});
+  // sum(first, second);
 
 }
